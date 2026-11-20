@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.1.0",
+  "reihe": {
+    "id": "rot-heisst-dienst-test",
+    "titel": "Rot heißt Dienst (Testkopie)",
+    "label": "[FORMAT-LABEL]",
+    "autorname": "Johan Tessmer",
+    "altersfreigabe": 16
+  },
+  "band": {
+    "nr": 1,
+    "titel": "Stimmprobe",
+    "sprache": "de",
+    "auflage": 1,
+    "test": true
+  },
+  "welt": {
+    "stadt": {
+      "name": "[Schauplatz aus dem Kanon; bis dahin Berlin als Platzhalter]",
+      "fiktiv": false,
+      "lat": 52.52,
+      "lon": 13.405,
+      "zeitzone": "Europe/Berlin"
+    },
+    "live": [
+      "datum",
+      "uhrzeit",
+      "wochentag",
+      "wetter"
+    ]
+  },
+  "erzeugt": {
+    "von": "reihen-studio",
+    "am": "2026-11-20T12:00:00+01:00",
+    "git_tag": "rot-heisst-dienst-test/band-01"
+  },
+  "sprungpunkte": [
+    {
+      "id": "sp_q7m2k9xa",
+      "status": "verankert",
+      "titel": "Die Fallakte",
+      "rolle": "vertiefung",
+      "zweck": "Der Leser hält die Akte in der Hand, die die Ermittlerin gerade aufschlägt.",
+      "modultyp": "akte",
+      "moment": "Die Ermittlerin öffnet zum ersten Mal die Akte zum Fall.",
+      "kurzcode": "K7Q-3XM",
+      "position": {
+        "szene_id": "sz_a1b2c3d4",
+        "kapitel": 2,
+        "textanker": "[wörtliches Zitat aus Band 1]",
+        "platzierung": "szenenende"
+      },
+      "spoilergrenze": "sz_a1b2c3d4",
+      "fassungen": [
+        {
+          "auflagen": {
+            "ab": 1,
+            "bis": null
+          },
+          "fakten_erlaubt": [
+            "F0001",
+            "F0002"
+          ],
+          "briefing": "Akte mit Deckblatt und zwei Seiten Protokoll; Schwärzungen dort, wo spätere Wendungen liegen.",
+          "live": [
+            "datum"
+          ]
+        }
+      ],
+      "ausgaben": {
+        "druck": {
+          "qr": true
+        },
+        "epub": {
+          "linktext": "Die Fallakte öffnen"
+        },
+        "hoerbuch": {
+          "ansage": "[kurzdomain] Schrägstrich K7Q3XM"
+        }
+      }
+    },
+    {
+      "id": "sp_r4t8w2ne",
+      "status": "verankert",
+      "titel": "Die Sprachnachricht",
+      "rolle": "raetsel",
+      "zweck": "Der Leser hört die Stimme, um die es geht, und erkennt ein Detail selbst.",
+      "modultyp": "audio",
+      "moment": "Eine unbekannte Sprachnachricht taucht auf.",
+      "kurzcode": "R4T-8WN",
+      "position": {
+        "szene_id": "sz_e5f6g7h8",
+        "kapitel": 5,
+        "textanker": "[wörtliches Zitat aus Band 1]",
+        "platzierung": "nach_textanker"
+      },
+      "spoilergrenze": "sz_e5f6g7h8",
+      "fassungen": [
+        {
+          "auflagen": {
+            "ab": 1,
+            "bis": null
+          },
+          "fakten_erlaubt": [
+            "F0003"
+          ],
+          "briefing": "Kurze Sprachnachricht (KI-Stimme, gekennzeichnet) mit Transkript; ein Hintergrundgeräusch verrät den Ort.",
+          "live": [
+            "uhrzeit"
+          ]
+        }
+      ],
+      "ausgaben": {
+        "druck": {
+          "qr": true
+        },
+        "epub": {
+          "linktext": "Die Sprachnachricht öffnen"
+        },
+        "hoerbuch": {
+          "ansage": "[kurzdomain] Schrägstrich R4T8WN"
+        }
+      }
+    },
+    {
+      "id": "sp_m9h3c6vb",
+      "status": "verankert",
+      "titel": "Die verschlossene Datei",
+      "rolle": "extra_schluessel",
+      "zweck": "Wer aufmerksam gelesen hat, öffnet mit einem Wort aus dem Text das Bonus-Material.",
+      "modultyp": "schloss",
+      "moment": "Am Ende des Bandes bleibt eine verschlossene Datei.",
+      "kurzcode": "M9H-3CV",
+      "position": {
+        "szene_id": "sz_i9j0k1l2",
+        "kapitel": 24,
+        "textanker": "[wörtliches Zitat aus Band 1]",
+        "platzierung": "kapitelende"
+      },
+      "spoilergrenze": "sz_i9j0k1l2",
+      "fassungen": [
+        {
+          "auflagen": {
+            "ab": 1,
+            "bis": null
+          },
+          "fakten_erlaubt": [
+            "F0004"
+          ],
+          "briefing": "Gesperrte Datei mit Eingabefeld, drei Versuche, danach ein Hinweis auf das Kapitel."
+        }
+      ],
+      "ausgaben": {
+        "druck": {
+          "qr": true
+        },
+        "epub": {
+          "linktext": "Die verschlossene Datei öffnen"
+        },
+        "hoerbuch": {
+          "ansage": "[kurzdomain] Schrägstrich M9H3CV"
+        }
+      },
+      "geschuetzt": {
+        "codewort": {
+          "wort": "[Codewort]",
+          "fundstelle": "[Zitat mit dem Codewort]"
+        },
+        "freischaltung": "Test-Extra ex_t3st0001"
+      }
+    }
+  ],
+  "extras": [
+    {
+      "id": "ex_t3st0001",
+      "typ": "bonus_ende",
+      "freischaltung": {
+        "sprungpunkte": [
+          "sp_m9h3c6vb"
+        ]
+      },
+      "inhalt_ref": "extras/ex_t3st0001.md",
+      "archiv_ersatz": "Nur Test: wird nicht archiviert. Bei echten Titeln: Anhang der nächsten Auflage."
+    }
+  ]
+}

@@ -1,0 +1,611 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transmedia-manifest/0.1.0",
+  "title": "Transmedia-Manifest",
+  "description": "Reihen-Studio -> Online-Studio. Eine Datei je Band und Sprachausgabe. Siehe docs/transmedia/04-manifest-schema.md.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reihe",
+    "band",
+    "welt",
+    "erzeugt",
+    "sprungpunkte"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^0\\.1\\.\\d+$"
+    },
+    "reihe": {
+      "type": "object",
+      "required": [
+        "id",
+        "titel",
+        "label",
+        "autorname",
+        "altersfreigabe"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "titel": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "autorname": {
+          "type": "string"
+        },
+        "altersfreigabe": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18
+        }
+      }
+    },
+    "band": {
+      "type": "object",
+      "required": [
+        "nr",
+        "titel",
+        "sprache",
+        "auflage"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "nr": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "titel": {
+          "type": "string"
+        },
+        "sprache": {
+          "enum": [
+            "de",
+            "en-US"
+          ]
+        },
+        "auflage": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "test": {
+          "type": "boolean"
+        }
+      }
+    },
+    "welt": {
+      "type": "object",
+      "required": [
+        "stadt",
+        "live"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "stadt": {
+          "type": "object",
+          "required": [
+            "name",
+            "fiktiv",
+            "lat",
+            "lon",
+            "zeitzone"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "fiktiv": {
+              "type": "boolean"
+            },
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "lon": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "zeitzone": {
+              "type": "string"
+            }
+          }
+        },
+        "live": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/livedatum"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "erzeugt": {
+      "type": "object",
+      "required": [
+        "von",
+        "am"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "von": {
+          "enum": [
+            "story-werkstatt",
+            "reihen-studio"
+          ]
+        },
+        "am": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}([+-]\\d{2}:\\d{2}|Z)$"
+        },
+        "git_tag": {
+          "type": "string"
+        }
+      }
+    },
+    "sprungpunkte": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sprungpunkt"
+      }
+    },
+    "extras": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extra"
+      }
+    }
+  },
+  "$defs": {
+    "livedatum": {
+      "enum": [
+        "datum",
+        "uhrzeit",
+        "wochentag",
+        "wetter"
+      ]
+    },
+    "szene_id": {
+      "type": "string",
+      "pattern": "^sz_[a-z0-9]{8}$"
+    },
+    "sp_id": {
+      "type": "string",
+      "pattern": "^sp_[a-z0-9]{8}$"
+    },
+    "fakt_id": {
+      "type": "string",
+      "pattern": "^F\\d{4,}$"
+    },
+    "fassung": {
+      "type": "object",
+      "required": [
+        "auflagen",
+        "fakten_erlaubt",
+        "briefing"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "auflagen": {
+          "type": "object",
+          "required": [
+            "ab"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ab": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "bis": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "fakten_erlaubt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fakt_id"
+          },
+          "uniqueItems": true
+        },
+        "briefing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "daten": {
+          "type": "object"
+        },
+        "live": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/livedatum"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "sprungpunkt": {
+      "type": "object",
+      "required": [
+        "id",
+        "status",
+        "titel",
+        "rolle",
+        "zweck",
+        "modultyp",
+        "moment"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/sp_id"
+        },
+        "status": {
+          "enum": [
+            "skizziert",
+            "verankert",
+            "live",
+            "archiviert"
+          ]
+        },
+        "titel": {
+          "type": "string"
+        },
+        "rolle": {
+          "enum": [
+            "vertiefung",
+            "raetsel",
+            "extra_schluessel"
+          ]
+        },
+        "zweck": {
+          "type": "string"
+        },
+        "modultyp": {
+          "enum": [
+            "akte",
+            "chat",
+            "feed",
+            "bildbeweis",
+            "audio",
+            "karte",
+            "schloss",
+            "ermittlerakte"
+          ]
+        },
+        "moment": {
+          "type": "string"
+        },
+        "wissensstand": {
+          "type": "string"
+        },
+        "skizze": {
+          "type": "string"
+        },
+        "kurzcode": {
+          "type": "string",
+          "pattern": "^[2-9A-HJKMNP-Z]{3}-[2-9A-HJKMNP-Z]{3}$"
+        },
+        "position": {
+          "type": "object",
+          "required": [
+            "szene_id",
+            "textanker",
+            "platzierung"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "szene_id": {
+              "$ref": "#/$defs/szene_id"
+            },
+            "kapitel": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "textanker": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "platzierung": {
+              "enum": [
+                "nach_textanker",
+                "szenenende",
+                "kapitelende"
+              ]
+            }
+          }
+        },
+        "spoilergrenze": {
+          "$ref": "#/$defs/szene_id"
+        },
+        "fassungen": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fassung"
+          }
+        },
+        "geschuetzt": {
+          "type": "object",
+          "required": [
+            "codewort"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "codewort": {
+              "type": "object",
+              "required": [
+                "wort",
+                "fundstelle"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "wort": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "fundstelle": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                }
+              }
+            },
+            "loesung": {
+              "type": "string"
+            },
+            "freischaltung": {
+              "type": "string"
+            }
+          }
+        },
+        "ausgaben": {
+          "type": "object",
+          "required": [
+            "druck",
+            "epub"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "druck": {
+              "type": "object",
+              "required": [
+                "qr"
+              ],
+              "properties": {
+                "qr": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "epub": {
+              "type": "object",
+              "required": [
+                "linktext"
+              ],
+              "properties": {
+                "linktext": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
+            },
+            "hoerbuch": {
+              "type": "object",
+              "required": [
+                "ansage"
+              ],
+              "properties": {
+                "ansage": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "teilen": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "erlaubt": {
+              "type": "boolean"
+            },
+            "text": {
+              "type": "string"
+            },
+            "bild": {
+              "type": "string"
+            }
+          }
+        },
+        "gedruckt": {
+          "type": "boolean",
+          "description": "true, sobald der Sprungpunkt in einer gedruckten oder veröffentlichten Ausgabe steht; danach nie löschen"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "verankert",
+                  "live"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "kurzcode",
+              "position",
+              "spoilergrenze",
+              "fassungen",
+              "ausgaben"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "verankert",
+                  "live"
+                ]
+              },
+              "modultyp": {
+                "const": "schloss"
+              }
+            },
+            "required": [
+              "status",
+              "modultyp"
+            ]
+          },
+          "then": {
+            "required": [
+              "geschuetzt"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "verankert",
+                  "live"
+                ]
+              },
+              "rolle": {
+                "const": "extra_schluessel"
+              }
+            },
+            "required": [
+              "status",
+              "rolle"
+            ]
+          },
+          "then": {
+            "required": [
+              "geschuetzt"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "live"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "gedruckt"
+            ],
+            "properties": {
+              "gedruckt": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gedruckt": {
+                "const": true
+              }
+            },
+            "required": [
+              "gedruckt"
+            ]
+          },
+          "then": {
+            "required": [
+              "kurzcode",
+              "position",
+              "fassungen",
+              "ausgaben"
+            ]
+          }
+        }
+      ]
+    },
+    "extra": {
+      "type": "object",
+      "required": [
+        "id",
+        "typ",
+        "freischaltung",
+        "inhalt_ref",
+        "archiv_ersatz"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ex_[a-z0-9]{8}$"
+        },
+        "typ": {
+          "enum": [
+            "zusatzkapitel",
+            "bonus_ende"
+          ]
+        },
+        "freischaltung": {
+          "type": "object",
+          "required": [
+            "sprungpunkte"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sprungpunkte": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/sp_id"
+              }
+            }
+          }
+        },
+        "inhalt_ref": {
+          "type": "string",
+          "pattern": "^extras/ex_[a-z0-9]{8}\\.md$"
+        },
+        "archiv_ersatz": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

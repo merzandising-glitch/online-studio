@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transmedia-rueckmeldung/0.1.0",
+  "title": "Transmedia-Rückmeldung",
+  "description": "Online-Studio -> Reihen-Studio. Eine Datei je Band und Sprachausgabe.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reihe_id",
+    "band_nr",
+    "sprache",
+    "erzeugt_am",
+    "sprungpunkte"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^0\\.1\\.\\d+$"
+    },
+    "reihe_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "band_nr": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sprache": {
+      "enum": [
+        "de",
+        "en-US"
+      ]
+    },
+    "erzeugt_am": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}([+-]\\d{2}:\\d{2}|Z)$"
+    },
+    "sprungpunkte": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sp"
+      }
+    }
+  },
+  "$defs": {
+    "medium": {
+      "type": "object",
+      "required": [
+        "typ",
+        "ki_erzeugt",
+        "quelle"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "typ": {
+          "enum": [
+            "bild",
+            "audio"
+          ]
+        },
+        "ki_erzeugt": {
+          "type": "boolean"
+        },
+        "kennzeichnung": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "transkript": {
+          "type": "string"
+        },
+        "quelle": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "ki_erzeugt": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "kennzeichnung"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "typ": {
+                "const": "bild"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "alt"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "typ": {
+                "const": "audio"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "transkript"
+            ]
+          }
+        }
+      ]
+    },
+    "antrag": {
+      "type": "object",
+      "required": [
+        "id",
+        "kategorie",
+        "subjekt",
+        "fakt",
+        "quelle",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ka_[a-z0-9]{8}$"
+        },
+        "kategorie": {
+          "enum": [
+            "figur",
+            "ort",
+            "gegenstand",
+            "regel",
+            "beziehung",
+            "ereignis"
+          ]
+        },
+        "subjekt": {
+          "type": "string"
+        },
+        "fakt": {
+          "type": "string"
+        },
+        "ersetzt_fakt_id": {
+          "type": "string",
+          "pattern": "^F\\d{4,}$"
+        },
+        "quelle": {
+          "type": "string",
+          "pattern": "^Web sp_[a-z0-9]{8}$"
+        },
+        "status": {
+          "enum": [
+            "offen",
+            "angenommen",
+            "abgelehnt"
+          ]
+        },
+        "fakt_id": {
+          "type": "string",
+          "pattern": "^F\\d{4,}$"
+        }
+      },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "angenommen"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "fakt_id"
+        ]
+      }
+    },
+    "sp": {
+      "type": "object",
+      "required": [
+        "id",
+        "status",
+        "fassungen"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^sp_[a-z0-9]{8}$"
+        },
+        "status": {
+          "enum": [
+            "gebaut",
+            "getestet"
+          ]
+        },
+        "fassungen": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "auflagen_ab",
+              "ziel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "auflagen_ab": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "ziel": {
+                "type": "string",
+                "pattern": "^/"
+              },
+              "vorschau": {
+                "type": "string",
+                "pattern": "^https?://",
+                "description": "Adresse der Handy-Vorschau (lokal im Online-Studio oder auf der Test-Domain)"
+              }
+            }
+          }
+        },
+        "medien": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/medium"
+          }
+        },
+        "barrierearm": {
+          "type": "object",
+          "required": [
+            "textalternative"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "textalternative": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "tests": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "geraeteprofile": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "erster_inhalt_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "qr_scan_bestanden": {
+              "type": "boolean"
+            },
+            "pruefer_befunde_offen": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "kanon_antraege": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/antrag"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "required": [
+            "barrierearm"
+          ]
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "getestet"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tests"
+            ],
+            "properties": {
+              "tests": {
+                "required": [
+                  "qr_scan_bestanden",
+                  "pruefer_befunde_offen"
+                ],
+                "properties": {
+                  "qr_scan_bestanden": {
+                    "const": true
+                  },
+                  "pruefer_befunde_offen": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

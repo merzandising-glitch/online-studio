@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "reihe_id": "rot-heisst-dienst-test",
+  "band_nr": 1,
+  "sprache": "de",
+  "erzeugt_am": "2026-11-20T12:00:00+01:00",
+  "sprungpunkte": [
+    {
+      "id": "sp_r4t8w2ne",
+      "status": "getestet",
+      "fassungen": [
+        {
+          "auflagen_ab": 1,
+          "ziel": "/rhd/1/x8k2m4q7",
+          "vorschau": "http://localhost:8766/vorschau/sp_r4t8w2ne?a=1"
+        }
+      ],
+      "medien": [
+        {
+          "typ": "audio",
+          "ki_erzeugt": true,
+          "kennzeichnung": "KI-erzeugte Stimme, fiktiv",
+          "transkript": "[Transkript]",
+          "quelle": "[KI-Werkzeug]"
+        }
+      ],
+      "barrierearm": {
+        "textalternative": "[vollständiges Transkript mit Beschreibung des Hintergrundgeräuschs]"
+      },
+      "tests": {
+        "geraeteprofile": [
+          "iPhone 13 Safari",
+          "Pixel 7 Chrome",
+          "Instagram-In-App"
+        ],
+        "erster_inhalt_ms": 1240,
+        "qr_scan_bestanden": true,
+        "pruefer_befunde_offen": 0
+      },
+      "kanon_antraege": [
+        {
+          "id": "ka_7d2k9m3x",
+          "kategorie": "ort",
+          "subjekt": "[Ort]",
+          "fakt": "Am Ort läuft nachts eine Lüftungsanlage (im Hintergrund hörbar).",
+          "quelle": "Web sp_r4t8w2ne",
+          "status": "offen"
+        }
+      ]
+    }
+  ]
+}
