@@ -13,16 +13,18 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 ## Kurzfazit
 
 1. **Die Kurz-Domain ist heikler als gedacht.** Sie muss jede Schreibweise verstehen, darf ihre Tabelle nicht
-   verraten und darf Browsern keine „ewige“ Weiterleitung beibringen. Sonst sind alle Spoiler-Pfade auf einen Schlag
-   lesbar, oder ein späterer Domainwechsel geht ins Leere (W1 bis W3).
-2. **Zwei messbare Ziele widersprechen sich mit üblicher Technik.** „IP nur gehasht im Arbeitsspeicher“ passt nicht zu
-   den meisten Server-Funktions-Angeboten, und „10 Versuche je Leser“ sperrt ganze Schulklassen aus, weil viele Handys
-   dieselbe IP teilen (H3, H4). Das entscheidet mit über die Hoster-Wahl.
+   verraten und sollte Browsern keine dauerhafte Weiterleitung beibringen. Sonst sind alle Spoiler-Pfade auf einen
+   Schlag lesbar, oder ein späterer Domainwechsel geht ins Leere (W1 bis W3). Ihr Zertifikat und ihre Erreichbarkeit
+   brauchen einen Wächter (H10).
+2. **Zwei messbare Ziele sind mit üblicher Technik schwer zu erfüllen.** „IP nie in Logs“ schließen viele Hoster aus,
+   und „10 Versuche je Leser“ sperrt ganze Schulklassen aus, weil viele Handys dieselbe IP teilen (H3, H4). Das
+   entscheidet mit über die Hoster-Wahl, und du entscheidest es im Interview.
 3. **„Kostenlos“ heißt bei Wetterdiensten oft „nur privat“.** Bücher verkaufen ist gewerblich (H6).
-4. **Drei rechtliche Punkte sind neu:** Das Impressum braucht eine ladungsfähige Anschrift, Jugendschutz im Netz
-   kennt keine Stufe „14“, und der Hoster braucht einen Auftragsverarbeitungsvertrag ohne IP-Protokolle (R1 bis R3).
-5. **Bilder und Stimmen kann Claude nicht erzeugen.** Für KI-Bilder und KI-Audio braucht es ein weiteres Werkzeug mit
-   eigener Lizenz, oder du lieferst die Medien selbst (P1).
+4. **Vier rechtliche Punkte sind neu:** Das Impressum braucht eine ladungsfähige Anschrift, Jugendschutz im Netz
+   kennt keine Stufe „14“, der Hoster braucht einen Auftragsverarbeitungsvertrag, und der Feed könnte als journalistisch
+   gelten (R1 bis R3, R6).
+5. **Fotos und Stimmen kann Claude nicht erzeugen.** Dafür braucht es ein weiteres Werkzeug mit eigener Lizenz, oder
+   du lieferst die Medien selbst (P1).
 
 ---
 
@@ -36,32 +38,33 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   E-Book-Leser geben dann auf.
 - **Satz für den Auftrag:** „Jede Schreibweise eines Kurzcodes führt direkt aus der Adresszeile zum Ziel: groß, klein,
   mit oder ohne Bindestrich. Unbekannte Codes landen auf der Eingabeseite mit freundlicher Hilfe statt auf einer
-  Fehlerseite.“
+  Fehlerseite. Ob der Hoster der Kurz-Domain Groß- und Kleinschreibung in seinen Weiterleitungsregeln gleich behandelt,
+  ist ein Auswahlkriterium für den Hoster.“
 
 ### W2. Die Weiterleitungstabelle darf nie als Ganzes beim Leser landen
 - **Was:** Der bequemste Weg für W1 wäre eine Liste aller Kurzcodes mit Zielen, die das Handy herunterlädt und dort
   nachschlägt.
 - **Warum es dich erwischt:** Dann steht jeder unratbare Zielpfad aller Bücher im Quelltext. Wer die Liste einmal
   öffnet, kann jede Seite vor dem Lesen aufrufen. Der Schutz aus „unratbare Pfade“ wäre weg.
-- **Satz für den Auftrag:** „Die Weiterleitungstabelle bleibt auf dem Server. Das Handy schickt nur den normalisierten
-  Code und bekommt nur dieses eine Ziel zurück.“
+- **Satz für den Auftrag:** „Die Weiterleitungstabelle steht nur in den Weiterleitungsregeln des Hosters, die niemand
+  von außen lesen kann. Die Eingabeseite bringt einen abgetippten Code nur in die Normalform (`K7Q3XM`) und ruft dann
+  diese Adresse auf. So bleibt die Kurz-Domain rein statisch.“
 
-### W3. Eine „dauerhafte“ Weiterleitung merkt sich der Browser für immer
-- **Was:** Es gibt zwei Arten von Weiterleitung: „dauerhaft“ (301) und „vorübergehend“ (302). Die dauerhafte speichert
-  der Browser und fragt die Kurz-Domain nie wieder.
+### W3. Eine „dauerhafte“ Weiterleitung merkt sich der Browser meist dauerhaft
+- **Was:** Es gibt zwei Arten von Weiterleitung: „dauerhaft“ (Fachwort 301) und „vorübergehend“ (302 oder 307). Die
+  dauerhafte speichert der Browser meist und fragt die Kurz-Domain dann nicht mehr.
 - **Warum es dich erwischt:** Die Kurz-Domain gibt es gerade deshalb, damit die Inhalts-Domain wechseln darf (Marke
   abgemahnt, Hoster gewechselt, Archivmodus). Wer schon einmal gescannt hat, landet dann weiter auf der alten Adresse.
-  Ebenso falsch wären Weiterleitungen per Skript oder Zwischenseite: Sie sehen für Phishing-Filter verdächtig aus.
 - **Satz für den Auftrag:** „Die Kurz-Domain leitet mit echter, vorübergehender Server-Weiterleitung (302 oder 307)
-  weiter, ohne Skript und ohne Zwischenseite.“
+  weiter, ohne Zwischenseite.“
 
 ### W4. Die Auflage im QR-Link (`?a=1`) können viele statische Hoster nicht auswerten
 - **Was:** Laut 04 trägt der QR-Link die Auflage als Anhang mit Fragezeichen (`/K7Q3XM?a=1`). Viele Anbieter für
-  statische Seiten leiten nur nach dem Pfad weiter und ignorieren alles nach dem `?`. Außerdem vergrößern `?`, `=` und
-  Kleinbuchstaben den QR-Code: Nur Großbuchstaben, Ziffern und wenige Zeichen wie `/` passen in den kompakten
-  QR-Modus.
-- **Warum es dich erwischt:** Eine „rein statische“ Kurz-Domain kann die Auflage dann nicht unterscheiden, und der Code
-  im Buch wird dichter und damit schlechter scannbar (Blindspot D3).
+  statische Seiten leiten nur nach dem Pfad weiter und ignorieren alles nach dem `?`. Dazu kommt der QR-Code selbst: Er
+  hat einen kompakten Modus für Großbuchstaben, Ziffern und wenige Zeichen wie `/` und `:`. Der hilft aber nur, wenn
+  der ganze Link großgeschrieben ist (`HTTPS://KURZ.DE/K7Q3XM/1`). Das `?a=1` allein macht den Code nur wenig größer.
+- **Warum es dich erwischt:** Eine „rein statische“ Kurz-Domain kann die Auflage dann nicht unterscheiden. Ein klein
+  geschriebener Link verschenkt außerdem Platz, und ein dichterer Code scannt schlechter (Blindspot D3).
 - **Satz für den Auftrag:** „Die Auflage steht im Pfad statt im Anhang (z. B. `/K7Q3XM/1`), wenn der Hoster der
   Kurz-Domain den Anhang nicht auswerten kann. Das entscheidet die Leitstelle.“ → **Bedarf an die Leitstelle** (siehe
   unten), ich erfinde kein Format.
@@ -81,17 +84,18 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   Instagram oder TikTok. Safari löscht ihn nach 7 Tagen ohne Besuch (Blindspot B3).
 - **Warum es dich erwischt:** Das Ziel „offline für die laufende Lesesitzung“ wäre ausgerechnet in den
   YA-Hauptkanälen nicht erfüllt.
-- **Satz für den Auftrag:** „Jede Leser-Seite ist nach dem ersten Laden vollständig, auch ohne Netz: alles Nötige in
-  einer kleinen Datei, der Offline-Speicher ist nur ein Zusatz. Bis auf Codewort-Prüfung und Live-Wetter funktioniert
-  alles ohne Server.“
+- **Satz für den Auftrag:** „Text und Bedienung jeder Leser-Seite stecken in einer kleinen Datei, die nach dem ersten
+  Laden auch ohne Netz vollständig funktioniert. Bilder und Audio laden danach nach. Der Offline-Speicher ist nur ein
+  Zusatz. Bis auf Codewort-Prüfung und Live-Wetter läuft alles ohne Server.“
 
 ### W7. „noindex“ wirkt nicht, wenn Suchmaschinen gesperrt werden
-- **Was:** Wer Suchmaschinen per `robots.txt` aussperrt, verhindert, dass sie die Anweisung „nicht aufnehmen“
-  überhaupt lesen. Dann erscheint die Adresse trotzdem in den Ergebnissen, nur ohne Beschreibung, sobald sie irgendwo
-  verlinkt ist.
+- **Was:** Die Datei `robots.txt` sagt Suchmaschinen, welche Seiten sie gar nicht erst abrufen sollen. Die Anweisung
+  „nicht aufnehmen“ (`noindex`) steht dagegen in der Seite selbst. Wer Suchmaschinen per `robots.txt` aussperrt,
+  verhindert also, dass sie das „nicht aufnehmen“ überhaupt lesen. Dann erscheint die Adresse trotzdem in den
+  Ergebnissen, nur ohne Beschreibung, sobald sie irgendwo verlinkt ist.
 - **Warum es dich erwischt:** Die erste Reddit-Lösung macht deine Zielpfade über Google auffindbar.
-- **Satz für den Auftrag:** „‚noindex‘ steht im Server-Kopf jeder Antwort und im Seitenkopf; `robots.txt` sperrt die
-  Leser-Seiten nicht.“
+- **Satz für den Auftrag:** „‚noindex‘ steht doppelt: in den unsichtbaren Begleitangaben, die der Server mit jeder
+  Antwort schickt, und im Kopf jeder Seite; `robots.txt` sperrt die Leser-Seiten nicht.“
 
 ### W8. Inhalte aus dem Manifest sind Fremdtext und dürfen nicht als Programmcode laufen
 - **Was:** Die Crews und das Manifest liefern Texte, die in Seiten eingesetzt werden. Steht darin versehentlich
@@ -105,8 +109,9 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 ## H. Hosting und Betrieb über 10 Jahre
 
 ### H1. „EU-Hoster“ heißt Firmensitz in der EU, nicht nur Rechenzentrum in der EU
-- **Was:** Viele große Anbieter werben mit „Region Frankfurt“, sind aber US-Firmen. Für sie gilt der US CLOUD Act, und
-  ihr weltweites Auslieferungsnetz läuft oft über Server außerhalb der EU.
+- **Was:** Viele große Anbieter werben mit „Region Frankfurt“, sind aber US-Firmen. Für sie gilt ein US-Gesetz (CLOUD
+  Act), nach dem US-Behörden Daten auch aus europäischen Rechenzentren verlangen können. Ihr Auslieferungsnetz (viele
+  Server weltweit, die Kopien der Seiten nah beim Leser bereithalten) läuft außerdem oft über Länder außerhalb der EU.
 - **Warum es dich erwischt:** Die Datenschutzerklärung muss dann eine Übermittlung in Drittländer erklären, und das
   Versprechen „Hosting in der EU“ (Blindspot C2) stimmt nicht.
 - **Satz für den Auftrag:** „Hoster mit Firmensitz und Servern in der EU, auch für das Auslieferungsnetz; Unteranbieter
@@ -118,7 +123,9 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   der Code an ihn gebunden, ist der Umzug ein Projekt, und das fällt in die Zeit, in der der Titel kaum noch Geld
   bringt.
 - **Satz für den Auftrag:** „Die Server-Funktionen sind ein kleiner, eigenständiger Dienst mit einer schmalen
-  Schnittstelle; ein Umzug zu einem anderen Hoster dauert höchstens einen Tag und ist einmal geprobt.“
+  Schnittstelle; ein Umzug zu einem anderen Hoster dauert höchstens einen Tag und ist einmal geprobt. Codewörter und
+  Extras kommen nach einem Umzug aus dem neu importierten Paket wieder auf den Server, nicht aus einer Sicherung beim
+  alten Hoster.“
 
 ### H3. „IP nur gehasht im Arbeitsspeicher“ passt nicht zu jedem Server-Modell
 - **Was:**
@@ -132,14 +139,26 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   weißt.
 - **Satz für den Auftrag:** „Gehasht wird mit einem geheimen Schlüssel, der stündlich wechselt und nur im Speicher
   liegt. Der Versuchszähler läuft in einem einzigen kleinen Dienst oder in einem Speicher, der Einträge nach einer
-  Stunde selbst löscht. Der Hoster bestätigt schriftlich, dass er keine IPs protokolliert oder sie kürzt.“
+  Stunde selbst löscht. Es kommen nur Hoster in Frage, bei denen die Server-Protokolle nachweislich keine IP enthalten
+  (abschaltbar oder gekürzt); eine bloße Zusage reicht nicht, ich prüfe es an echten Protokollen.“
+  → **Frage im Interview** und **Bedarf an die Leitstelle**, falls kein passender Hoster das Ziel wörtlich erfüllt.
 
-### H4. Viele Handys teilen sich eine IP
-- **Was:** Mobilfunknetze und Schul-WLANs schicken Hunderte Geräte über dieselbe öffentliche IP-Adresse.
+### H4. Viele Handys teilen sich eine IP, und andere wechseln sie ständig
+- **Was:**
+  - Mobilfunknetze und Schul-WLANs schicken Hunderte Geräte über dieselbe öffentliche IP-Adresse.
+  - Bei der neueren Adressform IPv6 bekommt dagegen ein einzelnes Handy einen ganzen Block an Adressen und kann sie
+    beliebig wechseln.
 - **Warum es dich erwischt:** „10 Versuche pro Stunde je Leser“ heißt technisch meist „je IP“. Eine Schulklasse, die das
-  Buch gemeinsam liest, ist nach zehn Fehlversuchen insgesamt für eine Stunde ausgesperrt.
-- **Satz für den Auftrag:** „‚Je Leser‘ heißt: je Lesesitzung, nicht je IP. Die Seite schickt dazu eine zufällige
-  Sitzungsnummer mit, die nur im Speicher des Tabs liegt; je IP gilt nur eine großzügige Obergrenze gegen Missbrauch.“
+  Buch gemeinsam liest, ist nach zehn Fehlversuchen insgesamt für eine Stunde ausgesperrt. Wer dagegen mit IPv6 raten
+  will, umgeht die Grenze durch Adresswechsel.
+- **Möglicher Weg (Hypothese, Sicherheitsfrage, deshalb nicht von mir allein entschieden):** zwei Grenzen zugleich.
+  Je Lesesitzung (eine Zufallsnummer, die nur im geöffneten Tab lebt) 10 Versuche pro Stunde; je Netz (IPv4-Adresse
+  bzw. IPv6-Block) 100 Versuche pro Stunde und Sprungpunkt. **Restrisiko:** Wer bewusst für jede Anfrage eine neue
+  Sitzungsnummer erzeugt, kommt auf 100 Versuche pro Stunde, also rund 2.400 am Tag; für ein Wort, das im Buch steht und
+  aus einem Wörterbuch geraten werden müsste, halte ich das für vertretbar, aber es ist mehr als „10 je Leser“.
+- **Satz für den Auftrag:** „Das Versuchslimit gilt je Lesesitzung (10 pro Stunde) und je Netz (100 pro Stunde und
+  Sprungpunkt, bei IPv6 je Adressblock).“ → **Frage im Interview** und **Bedarf an die Leitstelle** (Änderung eines
+  messbaren Ziels aus dem Masterplan).
 
 ### H5. Eine Rechnung ohne Deckel
 - **Was:** Server-Funktionen werden oft je Aufruf abgerechnet.
@@ -165,7 +184,8 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 - **Warum es dich erwischt:** Hinter jedem gedruckten QR-Code stünde dann fremder Inhalt, im schlimmsten Fall Betrug.
   Das wäre der größte denkbare Schaden für die Marke.
 - **Satz für den Auftrag:** „Beide Domains mit automatischer Verlängerung, Vorauszahlung für mehrere Jahre,
-  Transfersperre, Zwei-Faktor-Anmeldung beim Registrar und einer Erinnerung im Kalender 60 Tage vor Ablauf.“
+  Transfersperre (wo die Endung sie anbietet), Zwei-Faktor-Anmeldung beim Registrar (dem Anbieter, bei dem die Domain
+  gemietet ist) und einer Erinnerung im Kalender 60 Tage vor Ablauf.“
 
 ### H8. Domains ohne E-Mail werden zum Absender von Spam
 - **Was:** Eine Domain, die keine E-Mails verschickt, muss das ausdrücklich im Domain-Eintrag sagen (Einträge namens
@@ -182,8 +202,26 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 - **Satz für den Auftrag:** „Kurz-Domain mit seriöser Endung (z. B. `.de`), mindestens drei Monate vor dem ersten Druck
   registriert und mit einer schlichten Startseite versehen.“ → **Hinweis an die Leitstelle** (Domainwahl).
 
-### H10. Automatische Gerätetests sind keine echten Handys
-- **Was:** Die Testwerkzeuge ahmen Bildschirmgröße und Browser nach. iPhone-Safari, In-App-Browser und vergrößerte
+### H10. Das Sicherheitszertifikat der Kurz-Domain läuft still ab
+- **Was:** Jede Adresse mit `https` braucht ein Zertifikat, das alle paar Monate erneuert wird, meist automatisch durch
+  den Hoster.
+- **Warum es dich erwischt:** Klemmt die Erneuerung einmal (Hosterwechsel, geänderter Domain-Eintrag), zeigt jedes Handy
+  eine Sicherheitswarnung statt der Seite, für alle gedruckten Codes gleichzeitig. Niemand merkt es, bis Leser sich
+  beschweren.
+- **Satz für den Auftrag:** „Ein einfacher Wächter ruft Kurz-Domain und Inhalts-Domain täglich auf, prüft Zertifikat,
+  Weiterleitung und eine Testseite und schickt bei einem Fehler sofort einen Alarm.“
+
+### H11. Eine Phishing-Meldung kann den Hoster zum Abschalten bringen
+- **Was:** Hoster und Registrare nehmen Meldungen über Phishing ernst und sperren Domains oder Konten teils binnen
+  Stunden, oft automatisch und bevor jemand nachfragt.
+- **Warum es dich erwischt:** Ein besorgter Elternteil meldet die „gehackte Chatseite“ als Betrug, und das ganze Format
+  ist offline, ohne dass du erreichbar warst.
+- **Satz für den Auftrag:** „Für Missbrauchsmeldungen gibt es einen festgelegten Notfallweg: Funktions-E-Mail, die
+  überwacht wird, beim Hoster hinterlegter Hinweis auf das Buchformat, eine vorbereitete Erklärung samt Belegen
+  (Fiktionskennzeichnung, Impressum) und die Anleitung zur Gegendarstellung bei Google Safe Browsing.“
+
+### H12. Automatische Gerätetests sind keine echten Handys
+- **Was:** Die Testwerkzeuge (z. B. Playwright, das einen Browser fernsteuert) ahmen Bildschirmgröße und Browser nach. iPhone-Safari, In-App-Browser und vergrößerte
   Systemschrift verhalten sich auf echten Geräten anders.
 - **Warum es dich erwischt:** Der Testbericht ist grün, und auf dem ersten echten iPhone hängt das Codewort-Feld hinter
   der Tastatur.
@@ -200,18 +238,26 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   mit eigener Adresse dahinter steht.
 - **Warum es dich erwischt:** Ohne gültiges Impressum drohen Abmahnungen. Eine Privatadresse auf jeder Leser-Seite
   eines Jugendbuchs ist für dich ein echtes Risiko.
-- **Satz für den Auftrag:** „Impressum und Datenschutz nennen eine Geschäftsanschrift (z. B. Büro- oder Postservice mit
-  echter Zustellung) und eine eigene Funktions-E-Mail des Labels, dieselben Angaben wie im Buch-Impressum.“
+- **Unsicher:** Ob die Adresse eines Büro- oder Postservice als ladungsfähige Anschrift reicht, ist rechtlich
+  umstritten. Das Gesetz verlangt die Anschrift, unter der man niedergelassen ist. Das gehört in die anwaltliche
+  Prüfung.
+- **Satz für den Auftrag:** „Impressum und Datenschutz nennen dieselben Angaben wie das Buch-Impressum, mit einer
+  eigenen Funktions-E-Mail des Labels. Welche Anschrift zulässig ist, klärt die anwaltliche Prüfung vor der
+  Veröffentlichung; für den Technik-Test reicht ein Platzhalter, weil die Seiten nicht öffentlich beworben werden.“
   → **Frage im Interview.**
 
 ### R2. Im Jugendmedienschutz gibt es keine Stufe 14
 - **Was:** Für Webseiten gilt der Jugendmedienschutz-Staatsvertrag. Er kennt die Altersstufen 0, 6, 12, 16 und 18.
-  Inhalte, die für Jüngere ungeeignet sind, braucht man nur zu kennzeichnen (etwa mit einer maschinenlesbaren
-  Altersangabe für Filterprogramme) oder anders zu sichern, wenn sie über „ab 12“ hinausgehen.
+  Inhalte, die für Jüngere ungeeignet sind, muss man sichern, etwa mit einer maschinenlesbaren Altersangabe, die
+  Jugendschutzprogramme auf Familien-Geräten auswerten.
 - **Warum es dich erwischt:** Die Entscheidung 2 sagt „Webinhalte halten die Altersfreigabe 14 ein“, aber 14 gibt es im
-  Netz nicht. Ein Inhalt ist dort entweder „ab 12 unbedenklich“ oder „ab 16“. Der Technik-Test hat Altersfreigabe 16.
-- **Satz für den Auftrag:** „Webinhalte von Titel 1 werden so gebaut, dass sie ab 12 unbedenklich sind. Was darüber
-  hinausgeht, bleibt im Buch. Der Prüfer bewertet nach den Stufen 0/6/12/16/18.“ → **Frage im Interview.**
+  Netz nicht. Ein Inhalt ist dort entweder „ab 12 unbedenklich“ oder „ab 16“ (mit Kennzeichnung). Der Technik-Test hat
+  Altersfreigabe 16.
+- **Zwei Wege:** (a) Webinhalte so bauen, dass sie ab 12 unbedenklich sind; Härteres bleibt im Buch. (b) Webinhalte
+  „ab 16“ mit maschinenlesbarer Altersangabe; das passt zur dunkleren Mystery aus Entscheidung 2, aber
+  Jugendschutzprogramme sperren die Seiten dann für 14- und 15-Jährige, also für einen Teil der Zielgruppe.
+- **Satz für den Auftrag:** „Der Prüfer bewertet Webinhalte nach den Stufen 0/6/12/16/18; die Zielstufe für Titel 1
+  legst du fest.“ → **Frage im Interview** und **Bedarf an die Leitstelle**.
 
 ### R3. Der Hoster verarbeitet Leserdaten in deinem Auftrag
 - **Was:** Auch ohne Konten sieht der Hoster bei jedem Aufruf die IP-Adresse. Dafür braucht es einen Vertrag zur
@@ -224,30 +270,41 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 ### R4. Speicher auf dem Handy nur für das, was der Leser will
 - **Was:** Fortschritt und Offline-Kopie sind „für den gewünschten Dienst nötig“ und damit ohne Einwilligung erlaubt
   (§ 25 TDDDG). „Wiederkehrender Besucher“, Geräte-Kennungen oder Messwerte im Speicher sind es nicht.
-- **Warum es dich erwischt:** Der Masterplan will „Rückkehr“ messen. Mit einer gespeicherten Kennung bräuchte das ein
-  Einwilligungsbanner, und das zerstört die Immersion.
+- **Warum es dich erwischt:** Es ist verlockend, für bessere Zahlen eine Geräte-Kennung abzulegen („war schon mal
+  hier“). Das bräuchte ein Einwilligungsbanner, und das zerstört die Immersion.
 - **Satz für den Auftrag:** „Gemessen wird nur, was ohne Speicherung auf dem Gerät geht: Aufruf, Abschluss und der
-  Klick auf ‚Zurück zum Buch‘, als Summen je Sprungpunkt und Tag.“
+  Klick auf ‚Zurück zum Buch‘ (die Rückkehr ins Buch aus dem Masterplan), als Summen je Sprungpunkt und Tag.“
 
 ### R5. Lizenzen für alles, was 10 Jahre auf der Seite steht
 - **Was:** Schriften, Symbole, Wetterdaten, KI-Bilder und KI-Stimmen haben jeweils eigene Lizenzen. Manche KI-Dienste
-  erlauben gewerbliche Nutzung nur im bezahlten Tarif und nur für Inhalte, die während des Abos entstanden sind. KI-Bilder
-  sind selbst nicht urheberrechtlich geschützt, andere dürfen sie also wiederverwenden.
+  erlauben gewerbliche Nutzung nur im bezahlten Tarif. KI-Bilder sind in der Regel nicht urheberrechtlich geschützt
+  (es kommt auf den menschlichen Anteil an), andere dürfen sie dann wiederverwenden.
 - **Warum es dich erwischt:** Eine Schrift ohne Web-Lizenz oder eine KI-Stimme aus dem Gratis-Tarif fällt in Jahr 5
   bei einer Prüfung auf, und dann muss jede betroffene Seite neu gebaut werden.
-- **Satz für den Auftrag:** „Nur Schriften mit freier Lizenz (z. B. SIL OFL) und selbst ausgeliefert; für jedes Medium
-  stehen Werkzeug, Tarif und Lizenz in der Medienliste der Rückmeldung (Feld `quelle`).“
+- **Satz für den Auftrag:** „Nur Schriften mit freier Lizenz (z. B. die SIL Open Font License, die gewerbliche Nutzung
+  erlaubt), vom eigenen Server ausgeliefert; für jedes Medium stehen Werkzeug, Tarif und Lizenz in der Medienliste der
+  Rückmeldung (Feld `quelle`).“
+
+### R6. Ein Feed mit eigenen Texten zu aktuellen Themen kann als journalistisch gelten
+- **Was:** Der Medienstaatsvertrag verlangt für Webangebote mit journalistisch-redaktionell gestalteten Inhalten einen
+  namentlich genannten Verantwortlichen mit Anschrift (§ 18 Abs. 2 MStV) und Sorgfaltspflichten.
+- **Warum es dich erwischt:** Das Modul `feed` greift laut Entscheidung 4 aktuelle Themen in eigener Formulierung auf.
+  Ob ein erkennbar fiktiver Feed darunter fällt, ist offen; fällt er darunter, fehlt im Impressum eine Angabe.
+- **Satz für den Auftrag:** „Ob der Feed eine Angabe nach § 18 Abs. 2 MStV braucht, klärt die anwaltliche Prüfung; bis
+  dahin bleibt der Feed erkennbar fiktiv und ohne Bezug auf echte Personen oder Ereignisse.“ → **Punkt für die
+  anwaltliche Prüfung** (Masterplan Abschnitt 9).
 
 ---
 
 ## P. Produktion im Online-Studio
 
-### P1. Claude erzeugt keine Bilder und keine Stimmen
-- **Was:** Die Crews laufen wie im Reihen-Studio über Claude. Claude schreibt Texte, Daten und Seitengestaltung, aber
-  keine Fotos, Illustrationen oder Sprachaufnahmen. Dafür braucht es einen weiteren Dienst mit eigenem Konto, eigenem
+### P1. Claude erzeugt keine Fotos und keine Stimmen
+- **Was:** Die Crews laufen wie im Reihen-Studio über Claude. Claude schreibt Texte, Daten und Seitengestaltung und
+  kann Zeichnungen als Vektorgrafik anlegen (das reicht für die Stadt-Illustration im Modul `karte`). Fotorealistische
+  Bilder und Sprachaufnahmen erzeugt Claude nicht. Dafür braucht es einen weiteren Dienst mit eigenem Konto, eigenem
   Schlüssel, eigenen Kosten und eigener Lizenz (R5), oder du erzeugst die Medien selbst.
-- **Warum es dich erwischt:** Die Module `bildbeweis`, `audio` und `karte` haben sonst keinen Inhalt, und die
-  Kostenschätzung fehlt.
+- **Warum es dich erwischt:** Die Module `bildbeweis` und `audio` haben sonst keinen Inhalt, und die Kostenschätzung
+  fehlt.
 - **Satz für den Auftrag:** „In v1 erzeugt das Studio für Bilder und Audio ein genaues Briefing (Motiv, Länge, Text,
   Alt-Text, Transkript). Die Medien kommen über einen festen Ordner herein; der Prüfer kontrolliert Kennzeichnung und
   Lizenz. Eine direkte Anbindung an einen Bild- oder Stimmdienst ist ein späterer Ausbau.“ → **Frage im Interview.**
@@ -258,8 +315,8 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 - **Warum es dich erwischt:** Ein Repository wird irgendwann geteilt, geforkt oder öffentlich gemacht, und dann liegen
   alle Lösungen aller Bände offen. Außerdem soll laut Briefing privater Text nur über dich kommen.
 - **Satz für den Auftrag:** „Das importierte Paket und alle Geheimnisse bleiben außerhalb von Git; versioniert werden
-  nur Rückmeldung, Modul-Daten ohne Geheimnisse und Testberichte. Eine Prüfung vor jedem Commit stellt sicher, dass kein
-  Codewort und kein Extra-Text im Repository landet.“ → **Frage im Interview.**
+  nur Rückmeldung, Modul-Daten ohne Geheimnisse und Testberichte. Eine Prüfung vor jedem Speichern in Git (Commit)
+  stellt sicher, dass kein Codewort und kein Extra-Text im Repository landet.“ → **Frage im Interview.**
 
 ### P3. Die Studio-Oberfläche läuft auf Windows
 - **Was:** Das Reihen-Studio startet über `.bat`-Dateien unter Windows. Der Tester braucht einen Browser für die
@@ -267,7 +324,8 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 - **Warum es dich erwischt:** Werkzeuge, die nur unter Linux gut laufen, scheitern auf deinem PC, und du bemerkst es
   erst beim ersten echten Lauf.
 - **Satz für den Auftrag:** „Das Online-Studio startet unter Windows mit einem Doppelklick wie das Reihen-Studio; alle
-  Prüf- und Testwerkzeuge installieren sich über `pip` ohne Zusatzprogramme, und der Probemodus läuft ohne API-Schlüssel.“
+  Prüf- und Testwerkzeuge installieren sich mit demselben Befehl wie die übrigen Python-Bausteine, ohne
+  Zusatzprogramme, und der Probemodus läuft ohne API-Schlüssel.“
 
 ---
 
@@ -275,25 +333,33 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 
 1. **Auflage im QR-Link (W4):** Bleibt `/<KURZCODE>?a=<N>`, oder wird es `/<KURZCODE>/<N>`? Der Pfad funktioniert bei
    jedem statischen Hoster und ergibt kleinere QR-Codes. Betrifft Grundsatz 4 in 04 und den Satz in Strang C.
-2. **Altersfreigabe (R2):** Das Feld `reihe.altersfreigabe` erlaubt jede Zahl von 0 bis 18. Für die Webinhalte brauche
-   ich die Stufe nach Jugendmedienschutz (0/6/12/16/18). Das leite ich ab, ein neues Feld ist nicht nötig, solange die
-   Regel „Web eine Stufe unter dem Buch, mindestens ab 12“ gilt. Die Leitstelle soll das bestätigen.
-3. **Kurz-Domain (H8, H9):** seriöse Endung, früh registrieren, Domain-Einträge gegen Spam-Missbrauch.
+2. **Altersfreigabe (R2):** Entscheidung 2 verlangt für Webinhalte „Altersfreigabe 14“; im Jugendmedienschutz gibt es
+   nur 0/6/12/16/18. Für die Webinhalte von Titel 1 braucht es die Zielstufe 12 oder 16. Ob dafür ein Feld im Schema
+   nötig ist oder eine feste Regel reicht, entscheidet die Leitstelle.
+3. **Messbare Ziele zur Codewort-Prüfung (H3, H4):** „10 Versuche je Leser“ und „IP nie in Logs“ in der Fassung, die du
+   im Interview festlegst.
+4. **Kurz-Domain (H8, H9):** seriöse Endung, früh registrieren, Domain-Einträge gegen Spam-Missbrauch.
+5. **Anwaltliche Prüfung (Masterplan Abschnitt 9):** zusätzlich Impressum-Anschrift (R1) und § 18 Abs. 2 MStV für den
+   Feed (R6).
 
 ## Interview: offene Fragen (einzeln, je mit Hypothese)
 
 1. **Betrieb:** wartungsfrei gegen festen kleinen Monatsbetrag, oder günstiger mit jährlicher Pflege? *Hypothese:
    wartungsfrei, alle Reihen zusammen höchstens 10 € im Monat.*
-2. **Impressum (R1):** Welche Anschrift und welche E-Mail stehen auf den Leser-Seiten? *Hypothese: eine
-   Geschäftsanschrift über einen Büro- oder Postservice und eine Funktions-E-Mail des Labels, wie im Buch-Impressum.*
-3. **Bilder und Stimmen (P1):** Woher kommen sie in v1? *Hypothese: Das Studio schreibt die Briefings, du erzeugst die
+2. **IP und Protokolle (H3):** Gilt „IP nie in Logs“ wörtlich, auch wenn das die Auswahl an Hostern stark einschränkt?
+   *Hypothese: ja, wörtlich; nur Hoster, bei denen ich es an echten Protokollen nachweisen kann.*
+3. **Versuchslimit (H4):** zwei Grenzen (10 je Lesesitzung, 100 je Netz und Sprungpunkt pro Stunde) statt „10 je IP“?
+   *Hypothese: ja; Restrisiko siehe H4.*
+4. **Jugendschutz (R2):** Zielstufe der Webinhalte von Titel 1: 12 oder 16? *Hypothese: ab 12 unbedenklich; was härter
+   ist, bleibt im Buch, damit keine Filter 14- und 15-Jährige aussperren.*
+5. **Impressum (R1):** Welche Angaben stehen auf den Leser-Seiten? *Hypothese: dieselben wie im Buch-Impressum plus
+   Funktions-E-Mail des Labels; für den Technik-Test ein Platzhalter; die Anschrift klärt der Anwalt.*
+6. **Fotos und Stimmen (P1):** Woher kommen sie in v1? *Hypothese: Das Studio schreibt die Briefings, du erzeugst die
    Medien mit einem Werkzeug deiner Wahl und legst sie in einen Ordner.*
-4. **Jugendschutz (R2):** Webinhalte von Titel 1 „ab 12 unbedenklich“? *Hypothese: ja; was härter ist, bleibt im
-   Buch.*
-5. **Git und Geheimnisse (P2):** Paket und Codewörter außerhalb von Git? *Hypothese: ja; die Quelle bleibt das
+7. **Git und Geheimnisse (P2):** Paket und Codewörter außerhalb von Git? *Hypothese: ja; die Quelle bleibt das
    Reihen-Studio, das Paket lässt sich jederzeit neu importieren.*
-6. **Testgeräte (H10):** Welche echten Handys stehen für Abnahmen bereit? *Hypothese: ein eigenes Handy; das zweite
-   System über ein geliehenes Gerät oder einen Testleser.*
+8. **Testgeräte (H12):** Welche echten Handys stehen für Abnahmen bereit? *Hypothese: ein eigenes Handy; das zweite
+   System über ein geliehenes Gerät oder einen Testleser.* Die Antwort fließt nur in den Testplan, nie in Webinhalte.
 
 ---
 
@@ -306,27 +372,33 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 > - Kurz-Domain: jede Schreibweise aus der Adresszeile funktioniert; die Tabelle bleibt auf dem Server; vorübergehende
 >   Server-Weiterleitung ohne Skript; Auflage im Pfad, falls die Leitstelle zustimmt.
 > - Leser-Seiten: neutrale Titel und Vorschaudaten; Teilen über eigene Teaser-Adressen; nach dem ersten Laden ohne Netz
->   vollständig; „noindex“ im Server-Kopf; alle Inhalte als reiner Text eingesetzt; strenge Sicherheitsrichtlinie.
-> - Hosting: Firmensitz und Server in der EU; Server-Funktionen als kleiner, umziehbarer Dienst; IP nur mit stündlich
->   wechselndem Geheimschlüssel gehasht; keine IP in Protokollen, schriftlich bestätigt; Versuchslimit je Lesesitzung;
->   fester Preis oder Kostendeckel; Wetterdienst mit gewerblich nutzbarer offener Lizenz und Quellenhinweis.
-> - Domains: automatische Verlängerung, Transfersperre, Zwei-Faktor, Anti-Spam-Einträge, seriöse Endung, früh
->   registriert.
-> - Recht: Geschäftsanschrift im Impressum; Webinhalte nach den Stufen 0/6/12/16/18 geprüft; Auftragsverarbeitungsvertrag;
->   Zählung ohne Speicher auf dem Gerät; Lizenz jedes Mediums in der Medienliste.
-> - Produktion: Medien in v1 über Briefing und Ordner; Paket und Geheimnisse außerhalb von Git mit Prüfung vor jedem
->   Commit; Start unter Windows per Doppelklick; Abnahme auch auf echten Handys.
+>   vollständig; „noindex“ in Server-Begleitangaben und Seitenkopf; alle Inhalte als reiner Text eingesetzt; strenge Sicherheitsrichtlinie.
+> - Hosting: Firmensitz und Server in der EU; Server-Funktionen als kleiner, umziehbarer Dienst; Geheimnisse nach
+>   einem Umzug aus dem Paket neu aufgespielt; IP nur mit stündlich wechselndem Geheimschlüssel gehasht; keine IP in
+>   Protokollen, an echten Protokollen nachgewiesen; Versuchslimit wie im Interview festgelegt; fester Preis oder
+>   Kostendeckel; Wetterdienst mit gewerblich nutzbarer offener Lizenz und Quellenhinweis; täglicher Wächter für
+>   Zertifikat und Erreichbarkeit; Notfallweg für Missbrauchsmeldungen.
+> - Domains: automatische Verlängerung, Transfersperre (wo möglich), Zwei-Faktor, Anti-Spam-Einträge, seriöse Endung,
+>   früh registriert.
+> - Recht: Impressum wie im Buch, Anschrift anwaltlich geklärt; Webinhalte nach den Stufen 0/6/12/16/18 geprüft, Zielstufe
+>   wie im Interview festgelegt; Auftragsverarbeitungsvertrag; Zählung ohne Speicher auf dem Gerät; Lizenz jedes Mediums
+>   in der Medienliste; § 18 MStV für den Feed anwaltlich geklärt.
+> - Produktion: Fotos und Audio in v1 über Briefing und Ordner; Paket und Geheimnisse außerhalb von Git mit Prüfung vor
+>   jedem Speichern in Git; Start unter Windows per Doppelklick; Abnahme auch auf echten Handys.
 >
 > **Reihenfolge:**
-> 1. Interview zu den sechs offenen Fragen, einzeln mit Hypothese. Bedarf an die Leitstelle über dich weitergeben.
-> 2. Architektur- und Hosting-Vorschlag mit 10-Jahres-Kostenschätzung, je zwei bis drei Hoster und Wetterdienste im
+> 1. Interview zu den acht offenen Fragen, einzeln mit Hypothese. Bedarf an die Leitstelle über dich weitergeben.
+> 2. Gesamtplan für Strang D (Bauabschnitte, was hosterneutral vorab entsteht, Testplan).
+>    **STOPP Plan: Ich zeige dir den Plan; gebaut wird erst nach deiner Freigabe.**
+> 3. Architektur- und Hosting-Vorschlag mit 10-Jahres-Kostenschätzung, je zwei bis drei Hoster und Wetterdienste im
 >    Vergleich (Recherche auf Subagenten verteilt), vom Prüfagenten geprüft.
->    **STOPP Hosting: Du gibst Hoster und Wetterdienst frei.** Bis dahin baue ich nur lokal und hosterneutral.
-> 3. Lokal und hosterneutral, parallel zum Stopp: Programmgerüst mit Probemodus, Schemaprüfung und alle Prüfungen aus
->    04, Paket-Import, Modulbibliothek v1 mit Datenschemas, Lesestand-Code.
-> 4. Vier Entwürfe für die Studio-Oberfläche und vier für die Leser-Seiten des Technik-Tests.
+>    **STOPP Hosting: Du gibst Hoster und Wetterdienst frei.** Bis dahin baue ich nur lokal und hosterneutral, wie es
+>    das Briefing erlaubt. Gesperrt sind nur Konten, Deployments (das Hochladen auf den Server) und hostergebundener Code.
+> 4. Lokal und hosterneutral, parallel zum Hosting-Stopp: Programmgerüst mit Probemodus, Schemaprüfung und alle
+>    Prüfungen aus 04, Paket-Import, Modulbibliothek v1 mit Datenschemas, Lesestand-Code.
+> 5. Vier Entwürfe für die Studio-Oberfläche und vier für die Leser-Seiten des Technik-Tests.
 >    **STOPP Entwürfe: Du wählst je einen.**
-> 5. Crews (Modul-Autor, Gestalter, Prüfer, Tester), Rückmeldung mit Handy-Vorschau, Archivmodus.
-> 6. Nach der Hosting-Freigabe: Deployment auf eine Test-Subdomain, Gerätetests, QR-Scan aus dem Druck-PDF, Abnahme mit
->    dir auf echten Handys.
+> 6. Crews (Modul-Autor, Gestalter, Prüfer, Tester), Rückmeldung mit Handy-Vorschau, Archivmodus.
+> 7. Nach der Hosting-Freigabe: Hochladen auf eine Test-Unteradresse des Hosters (z. B. `test.…`), Gerätetests,
+>    QR-Scan aus dem Druck-PDF, Abnahme mit dir auf echten Handys.
 >    **STOPP Abnahme Technik-Test:** Prüfagent und du nehmen ab, dann übernimmt die Leitstelle.
