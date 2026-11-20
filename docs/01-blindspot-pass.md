@@ -152,12 +152,12 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   Buch gemeinsam liest, ist nach zehn Fehlversuchen insgesamt für eine Stunde ausgesperrt. Wer dagegen mit IPv6 raten
   will, umgeht die Grenze durch Adresswechsel.
 - **Möglicher Weg (Hypothese, Sicherheitsfrage, deshalb nicht von mir allein entschieden):** zwei Grenzen zugleich.
-  Je Lesesitzung (eine Zufallsnummer, die nur im geöffneten Tab lebt) 10 Versuche pro Stunde; je Netz (IPv4-Adresse
+  Je Lesesitzung (eine Zufallsnummer, die nur im Arbeitsspeicher des geöffneten Tabs lebt, nicht im Gerätespeicher, und damit nicht unter § 25 TDDDG fällt) 10 Versuche pro Stunde; je Netz (IPv4-Adresse
   bzw. IPv6-Block) 100 Versuche pro Stunde und Sprungpunkt. **Restrisiko:** Wer bewusst für jede Anfrage eine neue
   Sitzungsnummer erzeugt, kommt auf 100 Versuche pro Stunde, also rund 2.400 am Tag; für ein Wort, das im Buch steht und
   aus einem Wörterbuch geraten werden müsste, halte ich das für vertretbar, aber es ist mehr als „10 je Leser“.
 - **Satz für den Auftrag:** „Das Versuchslimit gilt je Lesesitzung (10 pro Stunde) und je Netz (100 pro Stunde und
-  Sprungpunkt, bei IPv6 je Adressblock).“ → **Frage im Interview** und **Bedarf an die Leitstelle** (Änderung eines
+  Sprungpunkt, bei IPv6 je Adressblock der üblichen Größe /64).“ → **Frage im Interview** und **Bedarf an die Leitstelle** (Änderung eines
   messbaren Ziels aus dem Masterplan).
 
 ### H5. Eine Rechnung ohne Deckel
@@ -218,11 +218,12 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   ist offline, ohne dass du erreichbar warst.
 - **Satz für den Auftrag:** „Für Missbrauchsmeldungen gibt es einen festgelegten Notfallweg: Funktions-E-Mail, die
   überwacht wird, beim Hoster hinterlegter Hinweis auf das Buchformat, eine vorbereitete Erklärung samt Belegen
-  (Fiktionskennzeichnung, Impressum) und die Anleitung zur Gegendarstellung bei Google Safe Browsing.“
+  (Fiktionskennzeichnung, Impressum) und die Anleitung, wie man über die Google Search Console eine Überprüfung einer
+  Phishing-Warnung beantragt.“
 
 ### H12. Automatische Gerätetests sind keine echten Handys
-- **Was:** Die Testwerkzeuge (z. B. Playwright, das einen Browser fernsteuert) ahmen Bildschirmgröße und Browser nach. iPhone-Safari, In-App-Browser und vergrößerte
-  Systemschrift verhalten sich auf echten Geräten anders.
+- **Was:** Die Testwerkzeuge (z. B. Playwright, das einen Browser fernsteuert) ahmen Bildschirmgröße und Browser
+  nach. iPhone-Safari, In-App-Browser und vergrößerte Systemschrift verhalten sich auf echten Geräten anders.
 - **Warum es dich erwischt:** Der Testbericht ist grün, und auf dem ersten echten iPhone hängt das Codewort-Feld hinter
   der Tastatur.
 - **Satz für den Auftrag:** „Neben den automatischen Profilen wird jede Abnahme auf mindestens einem echten iPhone und
@@ -243,8 +244,9 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
   Prüfung.
 - **Satz für den Auftrag:** „Impressum und Datenschutz nennen dieselben Angaben wie das Buch-Impressum, mit einer
   eigenen Funktions-E-Mail des Labels. Welche Anschrift zulässig ist, klärt die anwaltliche Prüfung vor der
-  Veröffentlichung; für den Technik-Test reicht ein Platzhalter, weil die Seiten nicht öffentlich beworben werden.“
-  → **Frage im Interview.**
+  Veröffentlichung. Für den Technik-Test ist die Test-Unteradresse nicht verlinkt und für Suchmaschinen gesperrt.“
+  **Restrisiko:** Ein Platzhalter-Impressum auf einer erreichbaren Seite ist theoretisch abmahnfähig; deshalb läuft der
+  Test möglichst kurz oder hinter einem Zugangsschutz. → **Frage im Interview.**
 
 ### R2. Im Jugendmedienschutz gibt es keine Stufe 14
 - **Was:** Für Webseiten gilt der Jugendmedienschutz-Staatsvertrag. Er kennt die Altersstufen 0, 6, 12, 16 und 18.
@@ -369,10 +371,12 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 > Version 0.1.0).
 >
 > **Zusätzliche Regeln aus dem Blindspot-Pass:**
-> - Kurz-Domain: jede Schreibweise aus der Adresszeile funktioniert; die Tabelle bleibt auf dem Server; vorübergehende
->   Server-Weiterleitung ohne Skript; Auflage im Pfad, falls die Leitstelle zustimmt.
-> - Leser-Seiten: neutrale Titel und Vorschaudaten; Teilen über eigene Teaser-Adressen; nach dem ersten Laden ohne Netz
->   vollständig; „noindex“ in Server-Begleitangaben und Seitenkopf; alle Inhalte als reiner Text eingesetzt; strenge Sicherheitsrichtlinie.
+> - Kurz-Domain: rein statisch; jede Schreibweise aus der Adresszeile funktioniert; die Tabelle steht nur in den
+>   Weiterleitungsregeln des Hosters; vorübergehende Server-Weiterleitung ohne Zwischenseite; Auflage im Pfad, falls
+>   die Leitstelle zustimmt.
+> - Leser-Seiten: neutrale Titel und Vorschaudaten; Teilen über eigene Teaser-Adressen; Text und Bedienung nach dem
+>   ersten Laden ohne Netz vollständig; „noindex“ in Server-Begleitangaben und Seitenkopf; alle Inhalte als reiner Text
+>   eingesetzt; strenge Sicherheitsrichtlinie.
 > - Hosting: Firmensitz und Server in der EU; Server-Funktionen als kleiner, umziehbarer Dienst; Geheimnisse nach
 >   einem Umzug aus dem Paket neu aufgespielt; IP nur mit stündlich wechselndem Geheimschlüssel gehasht; keine IP in
 >   Protokollen, an echten Protokollen nachgewiesen; Versuchslimit wie im Interview festgelegt; fester Preis oder
@@ -380,8 +384,8 @@ Kein Rechtsrat. Die Punkte unter R gehören zur anwaltlichen Prüfung (Masterpla
 >   Zertifikat und Erreichbarkeit; Notfallweg für Missbrauchsmeldungen.
 > - Domains: automatische Verlängerung, Transfersperre (wo möglich), Zwei-Faktor, Anti-Spam-Einträge, seriöse Endung,
 >   früh registriert.
-> - Recht: Impressum wie im Buch, Anschrift anwaltlich geklärt; Webinhalte nach den Stufen 0/6/12/16/18 geprüft, Zielstufe
->   wie im Interview festgelegt; Auftragsverarbeitungsvertrag; Zählung ohne Speicher auf dem Gerät; Lizenz jedes Mediums
+> - Recht: Impressum wie im Buch, Anschrift anwaltlich geklärt; Webinhalte nach den Stufen 0/6/12/16/18 geprüft,
+>   Zielstufe wie im Interview festgelegt; Auftragsverarbeitungsvertrag; Zählung ohne Speicher auf dem Gerät; Lizenz jedes Mediums
 >   in der Medienliste; § 18 MStV für den Feed anwaltlich geklärt.
 > - Produktion: Fotos und Audio in v1 über Briefing und Ordner; Paket und Geheimnisse außerhalb von Git mit Prüfung vor
 >   jedem Speichern in Git; Start unter Windows per Doppelklick; Abnahme auch auf echten Handys.
