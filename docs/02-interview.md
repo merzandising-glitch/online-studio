@@ -21,3 +21,4 @@ Grundlage: offene Fragen aus [01-blindspot-pass.md](01-blindspot-pass.md). Jede 
 4. **QR-Link-Format (Blindspot W4):** `/<KURZCODE>/<AUFLAGE>` statt `/<KURZCODE>?a=<AUFLAGE>`, wenn der Hoster der Kurz-Domain Anhänge nicht auswerten kann; ganzer Link in Großbuchstaben für kleinere QR-Codes. Entscheidung der Leitstelle.
 5. **Kurz-Domain (Blindspot H8, H9):** seriöse Endung, früh registrieren, Domain-Einträge gegen Spam-Missbrauch.
 6. **Anwaltliche Prüfung:** zusätzlich Impressum-Anschrift und § 18 Abs. 2 MStV für den Feed.
+7. **Prüfung „Spoilergrenze nicht vor Position“ (Plan 3a):** Das Manifest enthält keine Reihenfolge der Szenen. Soll es sie mitliefern, oder bleibt diese Prüfung beim Reihen-Studio? Ebenso prüft nur das Reihen-Studio gegen das Kurzcode-Register.
