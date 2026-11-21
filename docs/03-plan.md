@@ -21,7 +21,8 @@ Ein zweites lokales Programm neben dem Reihen-Studio, gleich aufgebaut:
 
 **Ein Klick vom Paket zur Handy-Vorschau:** Paket importieren → Schemaprüfung und alle Prüfungen aus 04 → Seite des
 Sprungpunkts bauen → Prüfer → Vorschau-Adresse und QR-Code auf dem Bildschirm, die du mit dem Handy im selben WLAN
-scannst. Die Adresse trägt das Studio in die Rückmeldung ein (Feld `vorschau`).
+scannst. Die Adresse trägt das Studio in die Rückmeldung ein (Feld `vorschau`). Sie gilt nur im eigenen WLAN und nur, solange
+der Vorschau-Server läuft; das steht als Hinweis daneben (und als Wunsch an Strang C für dessen Oberfläche).
 
 **Die Handy-Vorschau ist vom Studio getrennt.** Das Studio selbst ist nur auf deinem PC erreichbar. Ins WLAN geht nur
 ein eigener kleiner Vorschau-Server, der ausschließlich die gebauten Leser-Seiten aus `ausgabe/` und die lokale Fassung
@@ -36,7 +37,7 @@ Jeder Abschnitt endet mit einer Prüfung durch einen unabhängigen Prüfagenten.
 
 | Nr. | Abschnitt | Inhalt | Hängt ab von |
 |---|---|---|---|
-| **1** | **Hosting-Vorschlag** | Je zwei bis drei Wege: verwalteter EU-Anbieter und eigener kleiner Server (Interview 1), jeweils für Inhalts-Domain, Server-Funktionen und Kurz-Domain; zwei bis drei Wetterdienste; 10-Jahres-Kosten. Ausschlusskriterien: IP nie in Protokollen (gekürzt erlaubt), Groß-/Kleinschreibung in Weiterleitungen, vorübergehende Weiterleitung (302/307), Auswertung des Auflagen-Anhangs, Kostendeckel oder Festpreis, Firmensitz und Auslieferung in der EU, Auftragsverarbeitungsvertrag, Wetter-Lizenz gewerblich nutzbar. Dazu die Anleitung für dich: beide Domains in der Google Search Console anmelden (Blindspot B5), Domain-Einträge gegen Spam, Verlängerung und Transfersperre. Recherche auf Subagenten verteilt. **STOPP Hosting** | – |
+| **1** | **Hosting-Vorschlag** | Je zwei bis drei Wege: verwalteter EU-Anbieter und eigener kleiner Server (Interview 1), jeweils für Inhalts-Domain, Server-Funktionen und Kurz-Domain; zwei bis drei Wetterdienste; 10-Jahres-Kosten. Ausschlusskriterien: IP nie in Protokollen (gekürzt erlaubt), Groß-/Kleinschreibung in Weiterleitungen, vorübergehende Weiterleitung (302/307), Auswertung des Auflagen-Anhangs (nur sofern die Leitstelle den Anhang beibehält), Kostendeckel oder Festpreis, Firmensitz und Auslieferung in der EU, Auftragsverarbeitungsvertrag, Wetter-Lizenz gewerblich nutzbar. Dazu die Anleitung für dich: beide Domains in der Google Search Console anmelden (Blindspot B5), Domain-Einträge gegen Spam, automatische Verlängerung, Transfersperre, Zwei-Faktor-Anmeldung beim Registrar und Kalender-Erinnerung 60 Tage vor Ablauf. Recherche auf Subagenten verteilt. **STOPP Hosting** | – |
 | **2** | **Gerüst** (parallel zu 1) | Programmstart, Probemodus, Einstellungen, Ordnerstruktur, `.gitignore` für Paket und Geheimnisse, Sperre vor jedem Commit (Abschnitt 3) | – |
 | **3** | **Austausch** | „Paket importieren“ aus `<REIHEN_STUDIO_PFAD>/daten/reihen/<id>/baende/NN/transmedia/export/`, Schemaprüfung gegen `schema/`, die sieben Prüfungen aus 04 („Was JSON-Schema nicht prüfen kann“, Grenzen siehe Abschnitt 3a), „Rückmeldung schreiben“ nach `daten/<reihe-id>/band-NN/<sprache>/rueckmeldung.json` mit `vorschau`-Adresse | 2 |
 | **4** | **Modulbibliothek v1** | Acht Module (Abschnitt 4), je Datenschema, Textalternative, dunkler Grundmodus, Notfallinhalt, Serverteil, mehrsprachig angelegt, Share-Karte nach `teilen`; Lesestand-Code (Abschnitt 5). **Bis zum STOPP Entwürfe nur als Funktion mit schlichter Standarddarstellung; die Gestaltung folgt erst deiner Wahl.** | 3 |
@@ -46,7 +47,7 @@ Jeder Abschnitt endet mit einer Prüfung durch einen unabhängigen Prüfagenten.
 | **8** | **Server-Funktionen** | Codewort-Prüfung mit Versuchslimit 10/100 (Abschnitt 5a), Extras ausliefern, Wetter holen und zwischenspeichern (Quellenhinweis auf der Seite), Zählung: nur Aufruf, Abschluss und „Zurück zum Buch“ als Tagessummen je Sprungpunkt, ohne Speicher auf dem Gerät und ohne Vorschau-Roboter. IP nur mit stündlich wechselndem Geheimschlüssel gehasht, nur im Arbeitsspeicher, höchstens 1 Stunde, nie in Protokollen. Als kleiner, eigenständiger Dienst mit schmaler Schnittstelle; Geheimnisse kommen bei jedem Aufspielen aus dem Paket. Zuerst als lokale Fassung für die Handy-Vorschau, nach der Hosting-Freigabe in der Form des Hosters; der Umzug auf einen anderen Hoster wird einmal geprobt (Ziel: höchstens ein Tag) | 3, STOPP Hosting |
 | **9** | **Kurz-Domain** | Weiterleitungstabelle aus `kurzcode` und `ziel`, nur in den Weiterleitungsregeln des Hosters, nie als Liste für das Handy; vorübergehende Weiterleitung ohne Zwischenseite; Eingabeseite (Bindestrich und Groß-/Kleinschreibung egal, Auflagen-Frage bei mehreren Fassungen); jede Schreibweise auch direkt aus der Adresszeile; Format des QR-Links nach Entscheidung der Leitstelle (Auflage im Pfad oder im Anhang, Interview Weitergabe 4); Teaser-Adressen fürs Teilen | 3, STOPP Hosting |
 | **10** | **Archivmodus** | Export einer Reihe als rein statisches Paket mit Ersatz für geschützte Inhalte (nach `archiv_ersatz` des Extras) | 4, 8 |
-| **11** | **Technik-Test** | Hochladen auf eine nicht verlinkte, für Suchmaschinen gesperrte Test-Unteradresse, möglichst hinter Zugangsschutz und nur so lange wie nötig (das Paket trägt `band.test: true`, „nie veröffentlichen“); Gerätetests; QR-Scan aus dem Druck-PDF von Strang C; Kontrolle der echten Hoster-Protokolle; Abnahme mit dir auf iPhone und Android (je einmal aus Instagram); Wächter für Zertifikat und Erreichbarkeit; Notfallweg für Missbrauchsmeldungen vorbereitet. **STOPP Abnahme** | alles, Druck-PDF aus C |
+| **11** | **Technik-Test** | Hochladen auf eine nicht verlinkte, für Suchmaschinen gesperrte Test-Unteradresse, möglichst hinter Zugangsschutz und nur so lange wie nötig; für die eigentlichen Abnahme-Durchgänge (QR-Scan, Instagram, Ladezeit) wird der Zugangsschutz kurz abgeschaltet, weil er sie verfälschen würde (das Paket trägt `band.test: true`, „nie veröffentlichen“); Gerätetests; QR-Scan aus dem Druck-PDF von Strang C; Kontrolle der echten Hoster-Protokolle; Abnahme mit dir auf iPhone und Android (je einmal aus Instagram); Wächter für Zertifikat und Erreichbarkeit; Notfallweg für Missbrauchsmeldungen vorbereitet. **STOPP Abnahme** | alles, Druck-PDF aus C |
 
 Bis zum STOPP Hosting entsteht nur, was an keinen Hoster gebunden ist (Abschnitte 2 bis 7 und die lokalen Fassungen
 von 8 und 9). Es werden keine Konten angelegt und nichts hochgeladen.
@@ -129,8 +130,9 @@ Online-Studio. Live-Daten erscheinen nur im Rahmen, und nur solche, die `welt.li
   - welcher Index zu welcher Reihe, welchem Band und welcher Sprachausgabe gehört, und
   - welche Bit-Nummer (0 bis 31) zu welcher `sp_`-ID gehört, in der Reihenfolge der ersten Aufnahme.
 
-  Sonst würde ein alter Code nach Jahren auf einen anderen Band oder Sprungpunkt zeigen. Die Tabelle liegt in Git und
-  wird mit den Leser-Seiten ausgeliefert; sie enthält nur IDs, keine Geheimnisse.
+  Sonst würde ein alter Code nach Jahren auf einen anderen Band oder Sprungpunkt zeigen. Die Tabelle liegt in Git; jede
+  Leser-Seite bekommt nur den Ausschnitt ihres eigenen Bandes, damit niemand sieht, welche Reihen, Bände und
+  Sprungpunkte es sonst gibt.
 - Berechnet wird er nur auf dem Handy, ohne Server. Gespeichert wird er im Gerät, weil der Leser ihn will
   (§ 25 TDDDG). Zusätzlich wird er dem Leser zum Abschreiben angezeigt.
 - **Restrisiko:** Der Code reicht für 1.024 Bandausgaben (Bände mal Sprachen) über alle Reihen und 32 Sprungpunkte je
