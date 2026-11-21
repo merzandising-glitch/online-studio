@@ -11,3 +11,13 @@ Grundlage: offene Fragen aus [01-blindspot-pass.md](01-blindspot-pass.md). Jede 
 | 5 | Impressum der Leser-Seiten | wie Buch-Impressum plus Funktions-E-Mail des Labels | **Wie Buch + Label-Mail** (21.11.2026) | Angaben kommen aus einer lokalen Datei, die nie ins Repository gelangt (wie `daten/verlag.json` im Reihen-Studio); im Technik-Test Platzhalter; Zulässigkeit der Anschrift klärt die anwaltliche Prüfung |
 | 6 | Fotos und Stimmen in v1 | Studio schreibt Briefing, Herausgeber erzeugt Medium und legt es in einen Ordner | **Briefing + Ordner** (21.11.2026) | Kein weiterer KI-Dienst und Schlüssel in v1; Medien-Briefing mit Motiv, Text, Länge, Alt-Text, Transkript; Prüfer kontrolliert Kennzeichnung und Lizenz (`quelle`); im Probemodus Platzhalter |
 | 7 | Paket und Geheimnisse in Git? | außerhalb von Git, Sperre vor jedem Commit | **Außerhalb von Git** (21.11.2026) | Importiertes Paket, Codewörter, Extra-Texte nur lokal (in `.gitignore`); Prüfung vor jedem Commit; Sicherung über Neu-Export aus dem Reihen-Studio |
+| 8 | Echte Testgeräte für die Abnahme | eigenes Handy, das andere System geliehen | **iPhone und Android vorhanden** (21.11.2026) | Abnahme vollständig mit dem Herausgeber: iPhone-Safari, Android-Chrome, je einmal aus Instagram; nur im Testplan vermerkt |
+
+## Weitergabe an die Leitstelle (über den Herausgeber)
+
+1. **Datenschutz-Ziel präzisiert (Frage 2):** „IP nie in Logs“ gilt auch für die Zugriffsprotokolle des Hosters; erlaubt ist dort höchstens eine gekürzte IP.
+2. **Versuchslimit präzisiert (Frage 3):** 10 Versuche pro Stunde je Lesesitzung (Tab) und 100 je Netz (IPv4-Adresse bzw. IPv6-/64-Block) und Sprungpunkt.
+3. **Altersfreigabe der Webinhalte (Frage 4):** Entscheidung 2 („Altersfreigabe 14“) wird für das Web als Stufe „ab 12 unbedenklich“ umgesetzt, weil der Jugendmedienschutz keine Stufe 14 kennt.
+4. **QR-Link-Format (Blindspot W4):** `/<KURZCODE>/<AUFLAGE>` statt `/<KURZCODE>?a=<AUFLAGE>`, wenn der Hoster der Kurz-Domain Anhänge nicht auswerten kann; ganzer Link in Großbuchstaben für kleinere QR-Codes. Entscheidung der Leitstelle.
+5. **Kurz-Domain (Blindspot H8, H9):** seriöse Endung, früh registrieren, Domain-Einträge gegen Spam-Missbrauch.
+6. **Anwaltliche Prüfung:** zusätzlich Impressum-Anschrift und § 18 Abs. 2 MStV für den Feed.
